@@ -1,13 +1,11 @@
 <script>
-  import ActivityTableFooter from "$lib/ActivityTableFooter.svelte";
+  import {
+    ActivityFilters,
+    ActivityTable,
+    ActivityTableFooter,
+  } from "$lib/activity";
 
-  import ActivityTable from "$lib/ActivityTable.svelte";
-
-  import ActivityFilters from "$lib/ActivityFilters.svelte";
-
-  import UserInfo from "$lib/UserInfo.svelte";
-
-  import UserList from "$lib/UserList.svelte";
+  import { UserInfo, UserList } from "$lib/user";
 
   import Navbar from "$lib/Navbar.svelte";
 
