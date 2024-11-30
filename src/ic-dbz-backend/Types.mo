@@ -66,4 +66,16 @@ module Types {
         http_request : HttpRequestArgs -> async HttpResponsePayload;
     };
 
+    public type Planet = {
+        id : Nat;
+        name : Text;
+        isDestroyed : Bool;
+        description : Text;
+        image : Text;
+    };
+
+    public type ApiResponse = {
+        items : [Planet];
+    };
+
 };
