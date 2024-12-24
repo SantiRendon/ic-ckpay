@@ -1,3 +1,4 @@
 [dependencies]
 base = "0.13.4"
 web-io = "0.0.1"
+ckbtc-types = "0.1.2"
