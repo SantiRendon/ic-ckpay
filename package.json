@@ -14,5 +14,12 @@
   "type": "module",
   "workspaces": [
     "src/ic-dbz-frontend"
-  ]
+  ],
+  "dependencies": {
+    "carbon-components-svelte": "^0.87.0",
+    "carbon-icons-svelte": "^12.13.0"
+  },
+  "devDependencies": {
+    "carbon-preprocess-svelte": "^0.11.9"
+  }
 }
