@@ -4,18 +4,24 @@
     ActivityTable,
     ActivityTableFooter,
   } from "$lib/components/activity";
-  import { UserInfo } from "$lib/components/user";
+  import { UserInfo, UserList } from "$lib/components/user";
 </script>
 
-<!-- UserInfo -->
-<UserInfo />
+<!-- UserList -->
+<UserList />
 
-<div class="sm:p-7 p-4">
-  <!-- ActivityFilters -->
-  <ActivityFilters />
+<!-- ActivityPanel -->
+<div class="flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
+  <!-- <slot /> -->
+  <UserInfo />
 
-  <!-- ActivityTable -->
-  <ActivityTable />
-  <!-- ActivityTableFooter -->
-  <ActivityTableFooter />
+  <div class="sm:p-7 p-4">
+    <!-- ActivityFilters -->
+    <ActivityFilters />
+
+    <!-- ActivityTable -->
+    <ActivityTable />
+    <!-- ActivityTableFooter -->
+    <ActivityTableFooter />
+  </div>
 </div>
