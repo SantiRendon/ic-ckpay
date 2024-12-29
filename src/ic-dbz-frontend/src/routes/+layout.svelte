@@ -1,5 +1,6 @@
 <script>
   import "../index.css";
+  import "carbon-components-svelte/css/all.css";
   import Navbar from "$lib/components/Navbar.svelte";
   import Sidebar from "$lib/components/Sidebar.svelte";
 
