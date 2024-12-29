@@ -12,7 +12,6 @@
 
 <!-- ActivityPanel -->
 <div class="flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
-  <!-- <slot /> -->
   <UserInfo />
 
   <div class="sm:p-7 p-4">
