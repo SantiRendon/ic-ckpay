@@ -7,7 +7,8 @@
 
 // import Utils "./utils";
 
-shared actor class Backend(minter : Principal, ledger : Principal) = Self {
+shared actor class Backend() = Self {
+    // shared actor class Backend(minter : Principal, ledger : Principal) = Self {
     //   stable let ckbtcMinter = actor (Principal.toText(minter)) : CKBTC.Minter.Service;
     //   stable let ckbtcLedger = actor (Principal.toText(ledger)) : CKBTC.Ledger.Service;
 
