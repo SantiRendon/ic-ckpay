@@ -1,4 +1,9 @@
 <script>
+  let activeClass =
+    "h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center bg-blue-100 text-blue-500";
+
+  let inactiveClass =
+    "h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center";
 </script>
 
 <div
@@ -21,9 +26,7 @@
   </div>
   <div class="flex mx-auto flex-grow mt-4 flex-col text-gray-400 space-y-4">
     <!-- svelte-ignore a11y_consider_explicit_label -->
-    <button
-      class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center"
-    >
+    <button class={activeClass}>
       <svg
         viewBox="0 0 24 24"
         class="h-5"
@@ -38,9 +41,7 @@
       </svg>
     </button>
     <!-- svelte-ignore a11y_consider_explicit_label -->
-    <button
-      class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center bg-blue-100 text-blue-500"
-    >
+    <!-- <button class={inactiveClass}>
       <svg
         viewBox="0 0 24 24"
         class="h-5"
@@ -53,11 +54,9 @@
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
       </svg>
-    </button>
+    </button> -->
     <!-- svelte-ignore a11y_consider_explicit_label -->
-    <button
-      class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center"
-    >
+    <!-- <button class={inactiveClass}>
       <svg
         viewBox="0 0 24 24"
         class="h-5"
@@ -73,11 +72,9 @@
         <line x1="12" y1="11" x2="12" y2="17"></line>
         <line x1="9" y1="14" x2="15" y2="14"></line>
       </svg>
-    </button>
+    </button> -->
     <!-- svelte-ignore a11y_consider_explicit_label -->
-    <button
-      class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center"
-    >
+    <!-- <button class={inactiveClass}>
       <svg
         viewBox="0 0 24 24"
         class="h-5"
@@ -92,6 +89,6 @@
         <rect x="14" y="14" width="7" height="7"></rect>
         <rect x="3" y="14" width="7" height="7"></rect>
       </svg>
-    </button>
+    </button> -->
   </div>
 </div>
