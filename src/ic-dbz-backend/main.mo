@@ -1,59 +1,62 @@
 // // Base Modules
-// import Principal "mo:base/Principal";
+import Principal "mo:base/Principal";
 
 // // Mops Modules
-// import CKBTC "mo:ckbtc-types";
+import CKBTC "mo:ckbtc-types";
 // import Response "mo:web-io/Response";
 
-// import Utils "./utils";
+import Utils "./utils";
 
-shared actor class Backend() = Self {
-    // shared actor class Backend(minter : Principal, ledger : Principal) = Self {
-    //   stable let ckbtcMinter = actor (Principal.toText(minter)) : CKBTC.Minter.Service;
-    //   stable let ckbtcLedger = actor (Principal.toText(ledger)) : CKBTC.Ledger.Service;
+// shared actor class Backend() = Self {
 
-    //   private func getAccount(subaccount : Principal) : CKBTC.Ledger.Account {
-    //     return {
-    //       owner = Principal.fromActor(Self);
-    //       subaccount = ?Utils.padPrincipalWithZeros(subaccount);
-    //     };
-    //   };
+// Minter testnet principal: ml52i-qqaaa-aaaar-qaaba-cai
+// Ledger testnet principal: mc6ru-gyaaa-aaaar-qaaaq-cai
+shared actor class Backend(minter : Principal, ledger : Principal) = Self {
+    stable let ckbtcMinter = actor (Principal.toText(minter)) : CKBTC.Minter.Service;
+    stable let ckbtcLedger = actor (Principal.toText(ledger)) : CKBTC.Ledger.Service;
 
-    //   public shared ({ caller }) func getDepositAddress() : async Text {
-    //     let address = await ckbtcMinter.get_btc_address({
-    //       owner = ?Principal.fromActor(Self);
-    //       subaccount = ?Utils.padPrincipalWithZeros(caller);
-    //     });
+    private func getAccount(subaccount : Principal) : CKBTC.Ledger.Account {
+        return {
+            owner = Principal.fromActor(Self);
+            subaccount = ?Utils.padPrincipalWithZeros(subaccount);
+        };
+    };
 
-    //     return address;
-    //   };
+    public shared ({ caller }) func getDepositAddress() : async Text {
+        let address = await ckbtcMinter.get_btc_address({
+            owner = ?Principal.fromActor(Self);
+            subaccount = ?Utils.padPrincipalWithZeros(caller);
+        });
 
-    //   public shared ({ caller }) func updateBalance() : async {
-    //     #Ok : [CKBTC.Minter.UtxoStatus];
-    //     #Err : CKBTC.Minter.UpdateBalanceError;
-    //   } {
-    //     await ckbtcMinter.update_balance({
-    //       owner = ?Principal.fromActor(Self);
-    //       subaccount = ?Utils.padPrincipalWithZeros(caller);
-    //     });
-    //   };
+        return address;
+    };
 
-    //   public shared composite query ({ caller }) func getBalance() : async Nat {
-    //     let balance = await ckbtcLedger.icrc1_balance_of(getAccount(caller));
+    public shared ({ caller }) func updateBalance() : async {
+        #Ok : [CKBTC.Minter.UtxoStatus];
+        #Err : CKBTC.Minter.UpdateBalanceError;
+    } {
+        await ckbtcMinter.update_balance({
+            owner = ?Principal.fromActor(Self);
+            subaccount = ?Utils.padPrincipalWithZeros(caller);
+        });
+    };
 
-    //     return balance;
-    //   };
+    public shared composite query ({ caller }) func getBalance() : async Nat {
+        let balance = await ckbtcLedger.icrc1_balance_of(getAccount(caller));
 
-    //   public shared ({ caller }) func transfer(to : Principal, amount : Nat) : async CKBTC.Ledger.Result {
-    //     let transfer = {
-    //       from_subaccount = ?Utils.padPrincipalWithZeros(caller);
-    //       to = getAccount(to);
-    //       amount = amount;
-    //       fee = null;
-    //       memo = null;
-    //       created_at_time = null;
-    //     };
+        return balance;
+    };
 
-    //     await ckbtcLedger.icrc1_transfer(transfer);
-    //   };
+    public shared ({ caller }) func transfer(to : Principal, amount : Nat) : async CKBTC.Ledger.Result {
+        let transfer = {
+            from_subaccount = ?Utils.padPrincipalWithZeros(caller);
+            to = getAccount(to);
+            amount = amount;
+            fee = null;
+            memo = null;
+            created_at_time = null;
+        };
+
+        await ckbtcLedger.icrc1_transfer(transfer);
+    };
 };
