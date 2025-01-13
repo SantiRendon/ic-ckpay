@@ -27,6 +27,14 @@ If you want to test your project locally, you can use the following commands:
 # Starts the replica, running in the background
 dfx start --background --clean
 
+dfx deploy ckbtc_kyt --argument '(variant {
+    InitArg = record {
+        minter_id = principal "ml52i-qqaaa-aaaar-qaaba-cai";
+        maintainers = vec {};
+        mode = variant { AcceptAll };
+    }
+})'
+
 # Deploys your canisters to the replica and generates your candid interface
 dfx deploy
 ```
