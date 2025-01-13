@@ -27,14 +27,17 @@ If you want to test your project locally, you can use the following commands:
 # Starts the replica, running in the background
 dfx start --background --clean
 
-dfx deploy ckbtc_kyt --argument '(variant {
-    InitArg = record {
-        minter_id = principal "ml52i-qqaaa-aaaar-qaaba-cai";
-        maintainers = vec {};
-        mode = variant { AcceptAll };
-    }
-})'
+dfx deploy ckbtc-kyt --argument '(variant { InitArg = record { minter_id = principal "ml52i-qqaaa-aaaar-qaaba-cai"; maintainers = vec {}; mode = variant { AcceptAll }; } })'
 
+dfx canister status ckbtc-kyt
+
+dfx deploy ckbtc-ledger --argument '(variant { Init = record { token_symbol = "ckBTC"; token_name = "Chain Key Local Bitcoin"; minting_account = record { owner = principal "ml52i-qqaaa-aaaar-qaaba-cai" }; transfer_fee = 11_500; metadata = vec {}; initial_balances = vec {}; archive_options = record { num_blocks_to_archive = 10_000; trigger_threshold = 20_000; controller_id = principal "'$(dfx identity get-principal)'"; cycles_for_archive_creation = opt 1_000_000_000_000; max_message_size_bytes = null; node_max_memory_size_bytes = opt 3_221_225_472; }; feature_flags = opt record { icrc2 = true }; } })'
+
+dfx canister status ckbtc-ledger
+
+dfx deploy ckbtc-minter --argument '(variant { Init = record { btc_network = variant { Regtest }; ledger_id = principal "bnz7o-iuaaa-aaaaa-qaaaa-cai"; ecdsa_key_name = "dfx_test_key"; retrieve_btc_min_amount = 10_000; max_time_in_queue_nanos = 420_000_000_000; min_confirmations = opt 1; mode = variant { GeneralAvailability }; kyt_fee = opt 1_333; kyt_principal = opt principal "bnz7o-iuaaa-aaaaa-qaaaa-cai" } })'
+
+dfx canister status ckbtc-minter
 # Deploys your canisters to the replica and generates your candid interface
 dfx deploy
 ```
